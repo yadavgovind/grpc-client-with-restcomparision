@@ -1,5 +1,8 @@
 package com.grpc.grpcclient.controller;
 
+import java.security.GeneralSecurityException;
+
+import org.apache.tomcat.util.net.SSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import com.grpc.grpcclient.configuration.GrpcClientConfig;
 import com.grpc.grpcserver.AttItemListDTO;
 import com.grpc.grpcserver.proto.AttItem;
-import com.grpc.grpcserver.proto.AttItemList;
 
 @RestController
 public class AttItemController {
@@ -39,7 +41,7 @@ RestTemplate template= new RestTemplate();
 	
 	@GetMapping(value="/rest_atttest")
 	public  String   getRestAttItem(){
-		String url="http://localhost:7080/getData";
+		String url="https://localhost:7080/getData";
 		 long currentTimeMillisStart = System.currentTimeMillis();
 		 client.getData(AttItem.newBuilder().build());
 			AttItemListDTO forObject = template.getForObject(url, AttItemListDTO.class);
@@ -49,4 +51,10 @@ RestTemplate template= new RestTemplate();
 		return " time taken by rest template  : "+(currentTimeMillisStart-currentTimeMillisend);
 	}
 	
+	
+
+
+	
+
+
 }

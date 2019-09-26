@@ -22,16 +22,17 @@ public class GrpcClientConfig {
 		 long currentTimeMillisStart = System.currentTimeMillis();
 			 AttItemList attItemList = attItemServiceBlockingStub.getItemService(attItem);
 			 long currentTimeMillisend = System.currentTimeMillis();
-			 System.out.println(attItemList.getAttItemCount()+" Tiem taken by Grpc : "+(currentTimeMillisStart-currentTimeMillisend));
+			 System.out.println(attItemList.getAttItemCount()+" time taken by Grpc : "+(currentTimeMillisStart-currentTimeMillisend));
 		  }
 	 
 	   @PostConstruct
-	    private void initializeClient() {;
+	    private void initializeClient() { 
 	ManagedChannel managedChannelImpl = ManagedChannelBuilder.forAddress("localhost", 7565)
-	                .usePlaintext(true).build();
+	               .build();
 	//ManagedChannelBuilder.forAddress("dss-433.dsslp.com", 6565).usePlaintext(true).build();
 	    	 
 //	    	INTERNAL: Frame size 9849014 exceeds maximum: 4194304. If this is normal, increase the maxMessageSize in the channel/server builder
+	
 	attItemServiceBlockingStub=AttItemServiceGrpc.newBlockingStub(managedChannelImpl);
 	    }
 	   
@@ -40,9 +41,9 @@ public class GrpcClientConfig {
 			
 		   long currentTimeMillisStart = System.currentTimeMillis();
 				 Iterator<AttItemList> attItemList = attItemServiceBlockingStub.getItemStreamService(attItem);
-				attItemList.forEachRemaining(item->{
-					System.out.println("count is : "+item.getAttItemCount());;
-				 });
+//				attItemList.forEachRemaining(item->{
+//					System.out.println("count is : "+item.getAttItemCount());;
+//				 });
 				 long currentTimeMillisend = System.currentTimeMillis();
 				 System.out.println( " Tiem taken by GrpcStream: "+(currentTimeMillisStart-currentTimeMillisend));
 			  }

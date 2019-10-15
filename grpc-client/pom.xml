@@ -52,6 +52,16 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+       <dependency>
+            <groupId>de.bonprix.app.global</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>0.7</version>
+        </dependency>
+       <dependency>
+			<groupId>de.bonprix.app.sourcing</groupId>
+			<artifactId>dmart-service-api</artifactId>
+			<version>0.9.21</version>
+		</dependency>
   </dependencies>
 
   <build>

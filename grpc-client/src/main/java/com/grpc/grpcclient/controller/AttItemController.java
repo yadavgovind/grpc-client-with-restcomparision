@@ -1,16 +1,13 @@
 package com.grpc.grpcclient.controller;
 
-import java.security.GeneralSecurityException;
-
-import org.apache.tomcat.util.net.SSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.dss.grpc.AttItem;
 import com.grpc.grpcclient.configuration.GrpcClientConfig;
 import com.grpc.grpcserver.AttItemListDTO;
-import com.grpc.grpcserver.proto.AttItem;
 
 @RestController
 public class AttItemController {
@@ -35,10 +32,14 @@ RestTemplate template= new RestTemplate();
 		 client.getDataStream(AttItem.newBuilder().build());
 		 long currentTimeMillisend = System.currentTimeMillis();
 		 System.out.println(" time taken by Grpc in controller : "+(currentTimeMillisStart-currentTimeMillisend));
-		return " time taken by Grpc in Stream : "+(currentTimeMillisStart-currentTimeMillisend);
+		return " time taken by Grpc in Stream : "+(currentTimeMillisend-currentTimeMillisStart);
 	}
 	
-	
+	@GetMapping(value="/test123")
+	public  String   gettest(){
+		 
+		return " time taken by Grpc in Stream ";
+	}
 	@GetMapping(value="/rest_atttest")
 	public  String   getRestAttItem(){
 		String url="https://localhost:7080/getData";
@@ -48,7 +49,7 @@ RestTemplate template= new RestTemplate();
 			System.out.println(forObject.getDataEnity().size());
 			 long currentTimeMillisend = System.currentTimeMillis();
 		 System.out.println(" time taken by rest template in controller : "+(currentTimeMillisStart-currentTimeMillisend));
-		return " time taken by rest template  : "+(currentTimeMillisStart-currentTimeMillisend);
+		return " time taken by rest template  : "+(currentTimeMillisend-currentTimeMillisStart);
 	}
 	
 	

@@ -6,9 +6,9 @@ public class ObjectSizeMapper {
 	  * First and only argument is the package-qualified name of a class
 	  * which has a no-argument constructor.
 	  */
-	  public static void main(String className){
+	  public static void main(String[] className){
 		 String[] args= new String[2];
-		  args[0]=className;
+		  args[0]="de.bonprix.sourcing.dmart.dto.AttItem";
 	    Class<?> theClass = null;
 	    try {
 	      theClass = Class.forName(args[0]);
